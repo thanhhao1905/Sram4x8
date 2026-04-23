@@ -5,7 +5,9 @@
 
 The **SRAM 6T bitcell** is a fundamental static memory cell widely used in the design of cache memory, register files, and systems requiring high speed and low power consumption.
 
-**Structure**
+<img width="975" height="447" alt="image" src="https://github.com/user-attachments/assets/d6093edf-2931-4e1a-9543-93070ecffb49" />
+
+#### Structure
 
 The memory cell consists of **6 transistors**:
 
@@ -52,7 +54,9 @@ Complete design flow from schematic to GDS for the SRAM 6T bitcell using **Sky13
 
 ### 1. Schematic (xschem)
 
-Draw the schematic in xschem with 6 transistors according to the netlist:
+<img width="975" height="447" alt="image" src="https://github.com/user-attachments/assets/d6093edf-2931-4e1a-9543-93070ecffb49" />
+
+#### Draw the schematic in xschem with 6 transistors according to the netlist:
 
 ```
 XM1 Q QB GND GND sky130_fd_pr__pfet_01v8 L=0.15 W=1 nf=1     (M1 - NMOS)
