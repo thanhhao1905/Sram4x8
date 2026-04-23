@@ -1,0 +1,22 @@
+.lib /home/thanhhao/.ciel/ciel/sky130/versions/0fe599b2afb6708d281543108caf8310912f54af/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+.include Sram_6T_bitcell_magic.spice
+
+VDD  VDD  0  1.8
+
+Xu1  VDD GND WL Q BLB QB BL Sram_6T_bitcell
+
+Vin1 WL 0 DC 0 pulse(0   1.8   0n  100p  100p  10n     20n)                            
+Vin2 BL 0 DC 0 pulse(0   1.8   0n  100p  100p  4.5n    10n)
+Vin3 BLB 0 DC 0 pulse(0  1.8   5n  100p  100p  4.5n    10n)
+
+CBL   BL  0  20f
+CBLB  BLB 0  20f
+
+.ic V(Q)=1.8 V(QB)=0
+
+.tran 10p 100n
+.control
+run
+plot v(Q) v(QB)+2 v(WL)+4 v(BL)+6 v(BLB)+8
+.endc
+.end
