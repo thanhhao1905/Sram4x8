@@ -1,0 +1,11 @@
+* NGSPICE file created from Sram_6T_bitcell.ext - technology: sky130A
+
+.subckt Sram_6T_bitcell VDD GND WL Q BLB QB BL
+X0 QB Q GND GND sky130_fd_pr__nfet_01v8 ad=0.15 pd=1.1 as=0.1625 ps=1.15 w=0.5 l=0.15
+X1 VDD QB Q VDD sky130_fd_pr__pfet_01v8 ad=0.325 pd=1.65 as=0.55 ps=3.1 w=1 l=0.15
+X2 Q WL BL GND sky130_fd_pr__nfet_01v8 ad=0.15 pd=1.1 as=0.35 ps=2.4 w=0.5 l=0.15
+X3 BLB WL QB GND sky130_fd_pr__nfet_01v8 ad=0.275 pd=2.1 as=0.15 ps=1.1 w=0.5 l=0.15
+X4 GND QB Q GND sky130_fd_pr__nfet_01v8 ad=0.1625 pd=1.15 as=0.15 ps=1.1 w=0.5 l=0.15
+X5 QB Q VDD VDD sky130_fd_pr__pfet_01v8 ad=0.6 pd=3.2 as=0.325 ps=1.65 w=1 l=0.15
+.ends
+
