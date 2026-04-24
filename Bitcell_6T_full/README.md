@@ -11,7 +11,9 @@ The **bitcell_6t_full** is a complete SRAM memory cell including not only the tr
 
 This full bitcell can be used as a building block for larger SRAM arrays.
 
----
+<img width="511" height="807" alt="image" src="https://github.com/user-attachments/assets/2b9e5001-3b9f-419a-8b0d-a5bc56115dda" />
+
+
 
 ## Structure
 
@@ -27,7 +29,6 @@ The block consists of:
 All blocks share the same BL, BLB, WL, and control signals.
 
 ---
-
 ## Connection Diagram
 Inputs:
 
@@ -82,17 +83,13 @@ Schematic includes:
 - Sense Amplifier (M9, M12, M13, M14, M15, M16, M17)
 - Read output buffer (M18, M21, M23, M24)
 
-**Netlist example** (simplified):
-XM1 net1 net3 VDD VDD sky130_fd_pr__pfet_01v8 L=0.15 W=2
-XM5 BL WL Q GND sky130_fd_pr__nfet_01v8 L=0.15 W=0.5
-XM10 VDD2 pre_charge BL GND sky130_fd_pr__nfet_01v8 L=0.15 W=0.5
-XM19 data_in write BL GND sky130_fd_pr__nfet_01v8 L=0.15 W=0.5
-...
+<img width="604" height="753" alt="image" src="https://github.com/user-attachments/assets/d4e86786-f7aa-4e6b-9c35-4a68e7bdbfaf" />
 
-
-📌 *Full netlist is provided in the original document.*
 
 ### 2. Testbench Schematic (ngspice)
+
+<img width="819" height="753" alt="image" src="https://github.com/user-attachments/assets/067606cd-87a9-48eb-a0bd-8b522adf9d3a" />
+
 
 Create `tb_bitcell_6t_full.sch` with:
 
@@ -101,6 +98,9 @@ Create `tb_bitcell_6t_full.sch` with:
 - .tran 0.1n 200n
 
 Run simulation and plot all internal nodes.
+
+<img width="975" height="496" alt="image" src="https://github.com/user-attachments/assets/225d23e2-1810-4404-8b6c-d331e0eef870" />
+
 
 ### 3. Create Symbol (xschem)
 
@@ -111,14 +111,51 @@ WL, Data_in, Sense, BL, Q, QB, VDD, GND, VDD2, Pre_charge, Data_out, BLB, write,
 
 Re-run testbench using symbol to verify functionality.
 
+<img width="915" height="749" alt="image" src="https://github.com/user-attachments/assets/a73ee0c0-6f7c-4799-bbdd-a585551407a8" />
+
+
+<img width="975" height="496" alt="image" src="https://github.com/user-attachments/assets/340d70ad-92ab-473e-b4c9-7b32ff0503ca" />
+
+
 ### 4. Layout and DRC (magic)
 
 Layout is built from sub-blocks:
 
-- `Pre_Charge.mag`
-- `Sense_Amplifier.mag`
-- `Sense_Data_out.mag`
-- `Bitcell_6t_full.mag` (top cell)
+### Pre_Charge.mag
+
+<img width="702" height="304" alt="image" src="https://github.com/user-attachments/assets/8261c436-56f0-451c-b406-22931576777f" />
+
+
+<img width="817" height="681" alt="image" src="https://github.com/user-attachments/assets/384e1089-d998-4f21-b758-36d265d87ca6" />
+
+
+<img width="975" height="475" alt="image" src="https://github.com/user-attachments/assets/a5749f29-79a4-4826-968f-b1bb8fbe11fb" />
+
+---
+### Sense_Amplifier.mag
+
+<img width="831" height="688" alt="image" src="https://github.com/user-attachments/assets/b1ccb6db-1f5f-44ee-ba63-e58f3e97ff23" />
+
+
+<img width="631" height="914" alt="image" src="https://github.com/user-attachments/assets/612d7571-e1f4-4c88-8c9f-1c3fa2407cfd" />
+
+
+<img width="975" height="759" alt="image" src="https://github.com/user-attachments/assets/39953fb5-d995-444c-8870-6e3609d925a8" />
+
+---
+### Sense_Data_out.mag
+
+<img width="605" height="404" alt="image" src="https://github.com/user-attachments/assets/146376d9-188a-4d01-962c-d508ca118a86" />
+
+<img width="830" height="1223" alt="image" src="https://github.com/user-attachments/assets/c42550d4-f946-45d9-864b-ef31fe77741b" />
+
+<img width="975" height="758" alt="image" src="https://github.com/user-attachments/assets/5f9a6438-b480-440a-9175-9a1576f617f6" />
+
+---
+### Bitcell_6t_full.mag (top cell)
+
+<img width="303" height="1090" alt="image" src="https://github.com/user-attachments/assets/91e9719d-cebf-416e-bb9e-6603a1ebfae7" />
+
 
 DRC must pass with zero violations.
 
@@ -129,9 +166,11 @@ extract all
 ext2spice lvs
 ext2spice
 
-
 Run testbench with `.include bitcell_6t_full_magic.spice`
 Compare with schematic simulation.
+
+<img width="967" height="622" alt="image" src="https://github.com/user-attachments/assets/99e064b0-7144-499a-ac2d-c601826ca302" />
+
 
 ### 6. LVS (netgen) – Layout vs Schematic
 
@@ -147,9 +186,15 @@ netgen -batch lvs \
   "bitcell_6t_full_magic.spice bitcell_6t_full" \
   "bitcell_6t_full_xschem.spice bitcell_6t_full" \
   sky130A_setup.tcl \
-  lvs_buffer.log
+  lvs_bitcell_full.log
+
+
+
 ✅ Expected result:
 Circuits match uniquely.
+
+
+
 
 7. Parasitic Extraction (magic)
 Extract parasitics for post-layout simulation:
@@ -161,6 +206,7 @@ ext2spice scale off
 ext2spice cthresh 0
 ext2spice rthresh 0
 ext2spice -d -o postlayout_bitcell_6t_full.spice -f ngspice
+
 8. Post-Layout Simulation (ngspice)
 Run testbench with:
 
@@ -183,12 +229,16 @@ Data_out valid after sense amp enable
 
 BL/BLB show differential development during read
 
+<img width="975" height="496" alt="image" src="https://github.com/user-attachments/assets/b4d6a0e5-b788-445f-9c9c-b530ca0e1f22" />
+
 
 9. Export GDS (magic)
 After all checks pass:
 
 text
 gds write bitcell_6t_full.gds
+
+<img width="607" height="512" alt="image" src="https://github.com/user-attachments/assets/0457c28c-673c-4a5b-91ae-5f0e6a621d2e" />
 
 Conclusion
 The bitcell_6t_full integrates a full SRAM storage cell with all necessary read/write peripherals. It is fully designed, simulated, and verified in Sky130 technology, ready for use in larger memory arrays.
