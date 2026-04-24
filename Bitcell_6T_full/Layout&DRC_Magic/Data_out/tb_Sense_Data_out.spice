@@ -1,1 +1,22 @@
+.lib /home/thanhhao/.ciel/ciel/sky130/versions/0fe599b2afb6708d281543108caf8310912f54af/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+.include Sense_Data_out.spice
+
+x1  GND BL Data_in Read Write Data_out VDD Sense_Data_out
+
+VDD1  VDD    0  1.8
+
+Vin4 write 0 DC 0 pulse(0   1.8   10n  100p  100p  10n     40n)
+Vin5 read 0 DC 0 pulse(0   1.8   30n  100p  100p  10n     40n)
+Vin6 data_in 0 DC 0 pulse(0   1.8   0n  100p  100p  40n     80n)
+
+Rpd Data_out 0 200MEG
+
+.tran 0.1n 200n
+.save all
+.control
+run
+plot v(write) v(read)+2 v(data_in)+4 v(data_out)+6 v(BL)+8 
+.endc
+
+.end
 
