@@ -187,34 +187,41 @@ netgen -batch lvs \
   "bitcell_6t_full_xschem.spice bitcell_6t_full" \
   sky130A_setup.tcl \
   lvs_bitcell_full.log
+```
+
+<img width="1846" height="848" alt="image" src="https://github.com/user-attachments/assets/1598314d-7377-4503-972f-992b09bdc3b7" />
+
+### ✅ Expected result: Circuits match uniquely.
+
+<img width="805" height="228" alt="image" src="https://github.com/user-attachments/assets/76744634-aeee-436a-9dba-9adb599530e0" />
 
 
 
-✅ Expected result:
-Circuits match uniquely.
-
-
-
-
-7. Parasitic Extraction (magic)
+### 7. Parasitic Extraction (magic)
 Extract parasitics for post-layout simulation:
 
-text
+```bash
 extract all
 ext2spice hierarchy on
 ext2spice scale off
 ext2spice cthresh 0
 ext2spice rthresh 0
 ext2spice -d -o postlayout_bitcell_6t_full.spice -f ngspice
+```
 
-8. Post-Layout Simulation (ngspice)
+### 8. Post-Layout Simulation (ngspice)
 Run testbench with:
 
 .lib sky130.lib.spice tt
+
 .include postlayout_bitcell_6t_full.spice
 Compare waveforms with pre-layout to evaluate parasitic effects.
 
-Simulation Waveforms (Expected)
+
+<img width="975" height="496" alt="image" src="https://github.com/user-attachments/assets/b4d6a0e5-b788-445f-9c9c-b530ca0e1f22" />
+
+### Simulation Waveforms (Expected):
+
 WL pulses when active
 
 Pre_charge high before read
@@ -229,16 +236,11 @@ Data_out valid after sense amp enable
 
 BL/BLB show differential development during read
 
-<img width="975" height="496" alt="image" src="https://github.com/user-attachments/assets/b4d6a0e5-b788-445f-9c9c-b530ca0e1f22" />
 
-
-9. Export GDS (magic)
-After all checks pass:
-
-text
-gds write bitcell_6t_full.gds
+### 9. Export GDS (magic)
+After all checks pass: gds write bitcell_full.gds
 
 <img width="607" height="512" alt="image" src="https://github.com/user-attachments/assets/0457c28c-673c-4a5b-91ae-5f0e6a621d2e" />
 
-Conclusion
+## Conclusion
 The bitcell_6t_full integrates a full SRAM storage cell with all necessary read/write peripherals. It is fully designed, simulated, and verified in Sky130 technology, ready for use in larger memory arrays.
