@@ -108,12 +108,10 @@ Strictly follow Sky130 design rules. Run DRC to check for violations.
 Extract netlist from layout:
 
 ```tcl
+extract do local
 extract all
-ext2spice hierarchy on
-ext2spice scale off
-ext2spice cthresh 0
-ext2spice rthresh 0
-ext2spice -d -o Sram_6T_bitcell_magic.spice -f ngspice
+ext2spice lvs
+ext2spice
 ```
 
 Run the testbench with the extracted `.spice` file and compare results with the schematic.
