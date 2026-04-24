@@ -1,0 +1,64 @@
+
+Circuit 1 cell sky130_fd_pr__nfet_01v8 and Circuit 2 cell sky130_fd_pr__nfet_01v8 are black boxes.
+Warning: Equate pins:  cell sky130_fd_pr__nfet_01v8 is a placeholder, treated as a black box.
+Warning: Equate pins:  cell sky130_fd_pr__nfet_01v8 is a placeholder, treated as a black box.
+
+Subcircuit pins:
+Circuit 1: sky130_fd_pr__nfet_01v8         |Circuit 2: sky130_fd_pr__nfet_01v8         
+-------------------------------------------|-------------------------------------------
+1                                          |1                                          
+2                                          |2                                          
+3                                          |3                                          
+4                                          |4                                          
+---------------------------------------------------------------------------------------
+Cell pin lists are equivalent.
+Device classes sky130_fd_pr__nfet_01v8 and sky130_fd_pr__nfet_01v8 are equivalent.
+
+Circuit 1 cell sky130_fd_pr__pfet_01v8 and Circuit 2 cell sky130_fd_pr__pfet_01v8 are black boxes.
+Warning: Equate pins:  cell sky130_fd_pr__pfet_01v8 is a placeholder, treated as a black box.
+Warning: Equate pins:  cell sky130_fd_pr__pfet_01v8 is a placeholder, treated as a black box.
+
+Subcircuit pins:
+Circuit 1: sky130_fd_pr__pfet_01v8         |Circuit 2: sky130_fd_pr__pfet_01v8         
+-------------------------------------------|-------------------------------------------
+1                                          |1                                          
+2                                          |2                                          
+3                                          |3                                          
+4                                          |4                                          
+---------------------------------------------------------------------------------------
+Cell pin lists are equivalent.
+Device classes sky130_fd_pr__pfet_01v8 and sky130_fd_pr__pfet_01v8 are equivalent.
+
+Subcircuit summary:
+Circuit 1: bitcell_full                    |Circuit 2: bitcell_full                    
+-------------------------------------------|-------------------------------------------
+sky130_fd_pr__nfet_01v8 (14)               |sky130_fd_pr__nfet_01v8 (14)               
+sky130_fd_pr__pfet_01v8 (8)                |sky130_fd_pr__pfet_01v8 (8)                
+Number of devices: 22                      |Number of devices: 22                      
+Number of nets: 18                         |Number of nets: 18                         
+---------------------------------------------------------------------------------------
+Netlists match uniquely.
+
+Subcircuit pins:
+Circuit 1: bitcell_full                    |Circuit 2: bitcell_full                    
+-------------------------------------------|-------------------------------------------
+write                                      |write                                      
+data_in                                    |data_in                                    
+BLB                                        |BLB                                        
+VDD                                        |VDD                                        
+BL                                         |BL                                         
+pre_charge                                 |pre_charge                                 
+sense                                      |sense                                      
+read                                       |read                                       
+WL                                         |WL                                         
+VDD2                                       |VDD2                                       
+data_out                                   |data_out                                   
+GND                                        |GND                                        
+Q                                          |Q                                          
+QB                                         |QB                                         
+---------------------------------------------------------------------------------------
+Cell pin lists are equivalent.
+Device classes bitcell_full and bitcell_full are equivalent.
+
+Final result: Circuits match uniquely.
+.
