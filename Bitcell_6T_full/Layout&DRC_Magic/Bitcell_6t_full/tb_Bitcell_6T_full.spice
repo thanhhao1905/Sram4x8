@@ -1,0 +1,25 @@
+.lib /home/thanhhao/.ciel/ciel/sky130/versions/0fe599b2afb6708d281543108caf8310912f54af/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+.include Bitcell_6t_full.spice
+
+VDD1  VDD   0  1.8
+VDD2  VDD2  0  0.9
+
+xu1    WL Data_in Sense BL Q QB VDD GND VDD2 Pre_charge Data_out BLB write read Bitcell_6t_full
+
+BWL WL 0 V = ( (time > 15n && time < 20n) || (time > 30n && time < 40n) || (time > 55n && time < 60n) || (time > 70n && time < 80n) || (time > 95n && time < 100n) || (time > 110n && time < 120n) || (time > 135n && time < 140n) || (time > 150n && time < 160n)) ? 1.8 : 0
+
+Vin2 pre_charge 0 DC 0 pulse(0   1.8   0n  100p  100p  10n     20n)
+Vin3 sense 0 DC 0 pulse(0   1.8   10n  100p  100p  10n     20n)
+Vin4 write 0 DC 0 pulse(0   1.8   10n  100p  100p  10n     40n)
+Vin5 read 0 DC 0 pulse(0   1.8   30n  100p  100p  10n     40n)
+Vin6 data_in 0 DC 0 pulse(0   1.8   0n  100p  100p  40n     80n)
+
+.ic v(BL)=0 v(BLB)=0
+
+.tran 0.1n 200n
+.save all
+.control
+run
+plot v(WL) v(pre_charge)+2 v(sense)+4 v(write)+6 v(read)+8 v(data_in)+10 v(data_out)+12 v(BL)+14 v(BLB)+16 v(Q)+18 v(QB)+20
+.endc
+.end
