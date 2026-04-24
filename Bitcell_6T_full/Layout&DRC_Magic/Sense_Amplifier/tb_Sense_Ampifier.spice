@@ -1,0 +1,17 @@
+.lib /home/thanhhao/.ciel/ciel/sky130/versions/0fe599b2afb6708d281543108caf8310912f54af/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+.include Sense_Amplifier.spice
+
+x1  Sense BL BLB GND VDD Sense_Amplifier
+
+VDD1  VDD  0  1.8
+
+Vin3 sense 0 DC 0 pulse(0   1.8   10n  100p  100p  10n     20n)
+.ic v(BL)=0.8 v(BLB)=1
+
+.tran 0.1n 200n
+.save all
+.control
+run
+plot v(sense) v(BL)+2 v(BLB)+4
+.endc
+.end
