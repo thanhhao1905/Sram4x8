@@ -141,7 +141,8 @@ netgen -batch lvs \
 
 ### The result must report `Netlists match successfully`.
 
-<img width="975" height="220" alt="image" src="https://github.com/user-attachments/assets/9aa6c2e5-470c-4c67-bc5b-135eb3caa16f" />
+
+
 
 
 ### 7. Parasitic Extraction (magic)
