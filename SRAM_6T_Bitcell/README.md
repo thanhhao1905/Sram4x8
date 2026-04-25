@@ -133,7 +133,7 @@ netgen -batch lvs \
   "Sram_6T_bitcell_magic.spice Sram_6T_bitcell" \
   "Sram_6T_bitcell_xschem.spice Sram_6T_bitcell" \
   sky130A_setup.tcl \
-  lvs_buffer.log
+  lvs_SRAM_6T_Bitcell.log
 ```
 
 <img width="1849" height="850" alt="image" src="https://github.com/user-attachments/assets/006614a7-7a21-4360-b72f-e86484721440" />
