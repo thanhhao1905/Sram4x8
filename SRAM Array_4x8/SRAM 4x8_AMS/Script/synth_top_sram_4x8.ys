@@ -1,0 +1,30 @@
+# 1. Read Liberty file
+read_liberty -lib /openlane/pdks/0fe599b2afb6708d281543108caf8310912f54af/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+
+# 2. Read all RTL files
+read_verilog -sv sram_ctrl.v
+read_verilog -sv row_decoder.v
+read_verilog -sv sram_macro.v
+read_verilog -sv top_sram_tile.v
+
+# 3. Set top module
+hierarchy -check -top top_sram_tile
+
+# 4. High-level synthesis
+synth -top top_sram_tile
+
+# 5. Map flip-flops
+dfflibmap -liberty /openlane/pdks/0fe599b2afb6708d281543108caf8310912f54af/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+
+# 6. Optimize logic
+abc -liberty /openlane/pdks/0fe599b2afb6708d281543108caf8310912f54af/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+
+# 7. Clean up
+opt_clean -purge
+opt
+
+# 8. Write output netlist
+write_verilog -noattr -noexpr top_sram_tile_synth.v
+
+# 9. Generate reports
+stat
