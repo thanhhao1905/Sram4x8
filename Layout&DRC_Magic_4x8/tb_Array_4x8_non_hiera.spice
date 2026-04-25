@@ -1,0 +1,110 @@
+.lib /home/thanhhao/.ciel/ciel/sky130/versions/0fe599b2afb6708d281543108caf8310912f54af/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+.include array_4x8.spice
+
+VDD1  VDD   0  1.8
+VDD2  VDD2  0  0.9
+
+xu1  VDD GND VDD2 WL1 WL2 WL3 WL4 Pre_Charge1 Pre_Charge2 Pre_Charge3
++ Pre_Charge4 Pre_Charge5 Pre_Charge6 Pre_Charge7 Pre_Charge8 Sense1 Sense2 Sense3
++ Sense4 Sense5 Sense6 Sense7 Sense8 Write1 Write2 Write3 Write4 Write5 Write6 Write7
++ Write8 Read1 Read2 Read3 Read4 Read5 Read6 Read7 Read8 Data_in1 Data_in2 Data_in3
++ Data_in4 Data_in5 Data_in6 Data_in7 Data_in8 Q1_1 Q1_2 Q1_3 Q1_4 Q1_5 Q1_6 Q1_7
++ Q1_8 Q2_1 Q2_2 Q2_3 Q2_4 Q2_5 Q2_6 Q2_7 Q2_8 Q3_1 Q3_2 Q3_3 Q3_4 Q3_5 Q3_6 Q3_7
++ Q3_8 Q4_1 Q4_2 Q4_3 Q4_4 Q4_5 Q4_6 Q4_7 Q4_8 Data_out1 Data_out2 Data_out3 Data_out4
++ Data_out5 Data_out6 Data_out7 Data_out8 array_4x8
+
+* --- Parameters ---
+.param T_cycle_wl = 20n
+.param T_cycle = 20n
+.param T_data = 20n
+.param T_row = 160n
+
+
+B_wl1 WL1 0 V = ( (floor(time/T_row) - 4*floor(time/(4*T_row))) == 0 ) ? 
++ ( (time < 640n) ? ( ((time - T_cycle*floor(time/T_cycle)) >= 15n) ? 1.8 : 0 ) : 
++ ( ((time - T_cycle*floor(time/T_cycle)) >= 10n) ? 1.8 : 0 ) ) : 0
+
+B_wl2 WL2 0 V = ( (floor(time/T_row) - 4*floor(time/(4*T_row))) == 1 ) ? 
++ ( (time < 640n) ? ( ((time - T_cycle*floor(time/T_cycle)) >= 15n) ? 1.8 : 0 ) : 
++ ( ((time - T_cycle*floor(time/T_cycle)) >= 10n) ? 1.8 : 0 ) ) : 0
+
+B_wl3 WL3 0 V = ( (floor(time/T_row) - 4*floor(time/(4*T_row))) == 2 ) ? 
++ ( (time < 640n) ? ( ((time - T_cycle*floor(time/T_cycle)) >= 15n) ? 1.8 : 0 ) : 
++ ( ((time - T_cycle*floor(time/T_cycle)) >= 10n) ? 1.8 : 0 ) ) : 0
+
+B_wl4 WL4 0 V = ( (floor(time/T_row) - 4*floor(time/(4*T_row))) == 3 ) ? 
++ ( (time < 640n) ? ( ((time - T_cycle*floor(time/T_cycle)) >= 15n) ? 1.8 : 0 ) : 
++ ( ((time - T_cycle*floor(time/T_cycle)) >= 10n) ? 1.8 : 0 ) ) : 0
+
+
+B_charge1 Pre_Charge1 0 V = ( (floor(time/T_cycle) - 8*floor(time/(8*T_cycle))) == 0 && (time - T_cycle*floor(time/T_cycle)) < 10n ) ? 1.8 : 0
+B_charge2 Pre_Charge2 0 V = ( (floor(time/T_cycle) - 8*floor(time/(8*T_cycle))) == 1 && (time - T_cycle*floor(time/T_cycle)) < 10n ) ? 1.8 : 0
+B_charge3 Pre_Charge3 0 V = ( (floor(time/T_cycle) - 8*floor(time/(8*T_cycle))) == 2 && (time - T_cycle*floor(time/T_cycle)) < 10n ) ? 1.8 : 0
+B_charge4 Pre_Charge4 0 V = ( (floor(time/T_cycle) - 8*floor(time/(8*T_cycle))) == 3 && (time - T_cycle*floor(time/T_cycle)) < 10n ) ? 1.8 : 0
+B_charge5 Pre_Charge5 0 V = ( (floor(time/T_cycle) - 8*floor(time/(8*T_cycle))) == 4 && (time - T_cycle*floor(time/T_cycle)) < 10n ) ? 1.8 : 0
+B_charge6 Pre_Charge6 0 V = ( (floor(time/T_cycle) - 8*floor(time/(8*T_cycle))) == 5 && (time - T_cycle*floor(time/T_cycle)) < 10n ) ? 1.8 : 0
+B_charge7 Pre_Charge7 0 V = ( (floor(time/T_cycle) - 8*floor(time/(8*T_cycle))) == 6 && (time - T_cycle*floor(time/T_cycle)) < 10n ) ? 1.8 : 0
+B_charge8 Pre_Charge8 0 V = ( (floor(time/T_cycle) - 8*floor(time/(8*T_cycle))) == 7 && (time - T_cycle*floor(time/T_cycle)) < 10n ) ? 1.8 : 0
+
+
+B_sen1 Sense1 0 V = ( (floor(time/T_cycle) - 8*floor(time/(8*T_cycle))) == 0 && (time - T_cycle*floor(time/T_cycle)) >= 10n ) ? 1.8 : 0
+B_sen2 Sense2 0 V = ( (floor(time/T_cycle) - 8*floor(time/(8*T_cycle))) == 1 && (time - T_cycle*floor(time/T_cycle)) >= 10n ) ? 1.8 : 0
+B_sen3 Sense3 0 V = ( (floor(time/T_cycle) - 8*floor(time/(8*T_cycle))) == 2 && (time - T_cycle*floor(time/T_cycle)) >= 10n ) ? 1.8 : 0
+B_sen4 Sense4 0 V = ( (floor(time/T_cycle) - 8*floor(time/(8*T_cycle))) == 3 && (time - T_cycle*floor(time/T_cycle)) >= 10n ) ? 1.8 : 0
+B_sen5 Sense5 0 V = ( (floor(time/T_cycle) - 8*floor(time/(8*T_cycle))) == 4 && (time - T_cycle*floor(time/T_cycle)) >= 10n ) ? 1.8 : 0
+B_sen6 Sense6 0 V = ( (floor(time/T_cycle) - 8*floor(time/(8*T_cycle))) == 5 && (time - T_cycle*floor(time/T_cycle)) >= 10n ) ? 1.8 : 0
+B_sen7 Sense7 0 V = ( (floor(time/T_cycle) - 8*floor(time/(8*T_cycle))) == 6 && (time - T_cycle*floor(time/T_cycle)) >= 10n ) ? 1.8 : 0
+B_sen8 Sense8 0 V = ( (floor(time/T_cycle) - 8*floor(time/(8*T_cycle))) == 7 && (time - T_cycle*floor(time/T_cycle)) >= 10n ) ? 1.8 : 0
+
+
+B_write1 Write1 0 V = ( (floor(time/T_cycle) - 8*floor(time/(8*T_cycle))) == 0 && (time - T_cycle*floor(time/T_cycle)) >= 10n && time < 640n ) ? 1.8 : 0
+B_write2 Write2 0 V = ( (floor(time/T_cycle) - 8*floor(time/(8*T_cycle))) == 1 && (time - T_cycle*floor(time/T_cycle)) >= 10n && time < 640n ) ? 1.8 : 0
+B_write3 Write3 0 V = ( (floor(time/T_cycle) - 8*floor(time/(8*T_cycle))) == 2 && (time - T_cycle*floor(time/T_cycle)) >= 10n && time < 640n ) ? 1.8 : 0
+B_write4 Write4 0 V = ( (floor(time/T_cycle) - 8*floor(time/(8*T_cycle))) == 3 && (time - T_cycle*floor(time/T_cycle)) >= 10n && time < 640n ) ? 1.8 : 0
+B_write5 Write5 0 V = ( (floor(time/T_cycle) - 8*floor(time/(8*T_cycle))) == 4 && (time - T_cycle*floor(time/T_cycle)) >= 10n && time < 640n ) ? 1.8 : 0
+B_write6 Write6 0 V = ( (floor(time/T_cycle) - 8*floor(time/(8*T_cycle))) == 5 && (time - T_cycle*floor(time/T_cycle)) >= 10n && time < 640n ) ? 1.8 : 0
+B_write7 Write7 0 V = ( (floor(time/T_cycle) - 8*floor(time/(8*T_cycle))) == 6 && (time - T_cycle*floor(time/T_cycle)) >= 10n && time < 640n ) ? 1.8 : 0
+B_write8 Write8 0 V = ( (floor(time/T_cycle) - 8*floor(time/(8*T_cycle))) == 7 && (time - T_cycle*floor(time/T_cycle)) >= 10n && time < 640n ) ? 1.8 : 0
+
+
+B_read1 Read1 0 V = ( (floor(time/T_cycle) - 8*floor(time/(8*T_cycle))) == 0 && (time - T_cycle*floor(time/T_cycle)) >= 10n && time >= 640n ) ? 1.8 : 0
+B_read2 Read2 0 V = ( (floor(time/T_cycle) - 8*floor(time/(8*T_cycle))) == 1 && (time - T_cycle*floor(time/T_cycle)) >= 10n && time >= 640n ) ? 1.8 : 0
+B_read3 Read3 0 V = ( (floor(time/T_cycle) - 8*floor(time/(8*T_cycle))) == 2 && (time - T_cycle*floor(time/T_cycle)) >= 10n && time >= 640n ) ? 1.8 : 0
+B_read4 Read4 0 V = ( (floor(time/T_cycle) - 8*floor(time/(8*T_cycle))) == 3 && (time - T_cycle*floor(time/T_cycle)) >= 10n && time >= 640n ) ? 1.8 : 0
+B_read5 Read5 0 V = ( (floor(time/T_cycle) - 8*floor(time/(8*T_cycle))) == 4 && (time - T_cycle*floor(time/T_cycle)) >= 10n && time >= 640n ) ? 1.8 : 0
+B_read6 Read6 0 V = ( (floor(time/T_cycle) - 8*floor(time/(8*T_cycle))) == 5 && (time - T_cycle*floor(time/T_cycle)) >= 10n && time >= 640n ) ? 1.8 : 0
+B_read7 Read7 0 V = ( (floor(time/T_cycle) - 8*floor(time/(8*T_cycle))) == 6 && (time - T_cycle*floor(time/T_cycle)) >= 10n && time >= 640n ) ? 1.8 : 0
+B_read8 Read8 0 V = ( (floor(time/T_cycle) - 8*floor(time/(8*T_cycle))) == 7 && (time - T_cycle*floor(time/T_cycle)) >= 10n && time >= 640n ) ? 1.8 : 0
+
+
+
+B_data1 Data_in1 0 V = ( (floor(time/T_data) - 8*floor(time/(8*T_data))) == 0 ) ? 1.8 : 0
+B_data2 Data_in2 0 V = 0
+B_data3 Data_in3 0 V = ( (floor(time/T_data) - 8*floor(time/(8*T_data))) == 2 ) ? 1.8 : 0
+B_data4 Data_in4 0 V = 0
+B_data5 Data_in5 0 V = ( (floor(time/T_data) - 8*floor(time/(8*T_data))) == 4 ) ? 1.8 : 0
+B_data6 Data_in6 0 V = 0
+B_data7 Data_in7 0 V = ( (floor(time/T_data) - 8*floor(time/(8*T_data))) == 6 ) ? 1.8 : 0
+B_data8 Data_in8 0 V = 0
+
+
+* --- Initial Conditions ---
+
+.ic v(Q1_1)=0 v(Q1_2)=0 v(Q1_3)=0 v(Q1_4)=0 v(Q1_5)=0 v(Q1_6)=0 v(Q1_7)=0 v(Q1_8)=0
++   v(Q2_1)=0 v(Q2_2)=0 v(Q2_3)=0 v(Q2_4)=0 v(Q2_5)=0 v(Q2_6)=0 v(Q2_7)=0 v(Q2_8)=0
++   v(Q3_1)=0 v(Q3_2)=0 v(Q3_3)=0 v(Q3_4)=0 v(Q3_5)=0 v(Q3_6)=0 v(Q3_7)=0 v(Q3_8)=0
++   v(Q4_1)=0 v(Q4_2)=0 v(Q4_3)=0 v(Q4_4)=0 v(Q4_5)=0 v(Q4_6)=0 v(Q4_7)=0 v(Q4_8)=0
+
+* --- Simulation Setup ---
+.tran 0.1n 900n
+.save all
+.control
+run
+
+plot v(write1) v(write2)+2 v(write3)+4 v(write4)+6 v(write5)+8 v(write6)+10 v(write7)+12 v(write8)+14 
+  + v(read1)+16 v(read2)+18 v(read3)+20 v(read4)+22 v(read5)+24 v(read6)+26 v(read7)+28 v(read8)+30 
+  + v(WL1)+32 v(WL2)+34 v(WL3)+36 v(WL4)+38 
+  + v(data_out1)+40 v(data_out2)+42 v(data_out3)+44 v(data_out4)+46 v(data_out5)+48 v(data_out6)+50 v(data_out7)+52 v(data_out8)+54
+
+.endc
+.end
